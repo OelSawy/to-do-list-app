@@ -1,0 +1,55 @@
+// components/Sidebar.js
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { useSidebar } from "../context/SideBarContext";
+
+const Sidebar = () => {
+
+  const { name, filter, setFilter } = useSidebar();
+
+  return (
+    <aside
+      className={`bg-[var(--side-bar-background)] text-white h-screen fixed top-0 left-0 shadow-md transition-transform transform translate-x-0 md:translate-x-0 w-64`}
+    >
+      <div className="flex items-start justify-start p-4">
+        <div className="text-xl font-bold">
+          <Link href="/">
+            <Image src="/logo.png" alt="Logo" width={120} height={50} />
+          </Link>
+        </div>
+      </div>
+
+      <div className="flex items-start justify-start p-4">
+        <div className="text-2xl font-bold">
+          <span className="not-selected">{name}</span>
+        </div>
+      </div>
+
+      <nav className="flex flex-col space-y-7 p-4 items-start">
+        <button value={filter} onClick={() => setFilter("all")} className={`${filter === "all" ? "selected border-selected" : "not-selected border-not-selected"} w-full text-left text-2xl px-2 py-2 border-b-2`}>
+          All Tasks
+        </button>
+        <button value={filter} onClick={() => setFilter("important")} className={`${filter === "important" ? "selected border-selected" : "not-selected border-not-selected"} w-full text-left text-2xl px-2 py-2 border-b-2`}>
+          Important
+        </button>
+        <button value={filter} onClick={() => setFilter("work")} className={`${filter === "work" ? "selected border-selected" : "not-selected border-not-selected"} w-full text-left text-2xl px-2 py-2 border-b-2`}>
+          Work
+        </button>
+        <button
+          value={filter}
+          onClick={() => setFilter("personal")}
+          className={`w-full text-left text-2xl px-2 py-2 border-b-2 ${filter === "personal"
+            ? "selected border-selected"
+            : "not-selected border-not-selected"
+            }`}
+        >
+          Personal
+        </button>
+      </nav>
+    </aside>
+  );
+};
+
+export default Sidebar;
