@@ -40,19 +40,19 @@ const Sidebar = () => {
           </div>
         </div>
         <nav className="flex flex-col space-y-7 p-4 items-start">
-          <button value={filter} onClick={() => setFilter("all")} className={`${filter === "all" ? "selected border-selected" : "not-selected border-not-selected"} w-full text-left text-2xl px-2 py-2 border-b-2`}>
+          <button value={filter} onClick={() => setFilter("all")} className={`${filter === "all" ? "selected border-selected" : "not-selected border-not-selected"} cursor-pointer w-full text-left text-2xl px-2 py-2 border-b-2`}>
             All Tasks
           </button>
-          <button value={filter} onClick={() => setFilter("important")} className={`${filter === "important" ? "selected border-selected" : "not-selected border-not-selected"} w-full text-left text-2xl px-2 py-2 border-b-2`}>
+          <button value={filter} onClick={() => setFilter("important")} className={`${filter === "important" ? "selected border-selected" : "not-selected border-not-selected"} cursor-pointer w-full text-left text-2xl px-2 py-2 border-b-2`}>
             Important
           </button>
-          <button value={filter} onClick={() => setFilter("work")} className={`${filter === "work" ? "selected border-selected" : "not-selected border-not-selected"} w-full text-left text-2xl px-2 py-2 border-b-2`}>
+          <button value={filter} onClick={() => setFilter("work")} className={`${filter === "work" ? "selected border-selected" : "not-selected border-not-selected"} cursor-pointer w-full text-left text-2xl px-2 py-2 border-b-2`}>
             Work
           </button>
           <button
             value={filter}
             onClick={() => setFilter("personal")}
-            className={`w-full text-left text-2xl px-2 py-2 border-b-2 ${filter === "personal"
+            className={`cursor-pointer w-full text-left text-2xl px-2 py-2 border-b-2 ${filter === "personal"
               ? "selected border-selected"
               : "not-selected border-not-selected"
               }`}
@@ -69,7 +69,7 @@ const Sidebar = () => {
               await logout();
               router.push("/login");
             }}
-            className="not-selected text-3xl"
+            className="cursor-pointer not-selected text-3xl"
           >
             Logout
           </button>
@@ -79,7 +79,7 @@ const Sidebar = () => {
             await logout();
             router.push("/login");
           }}
-          className="not-selected text-3xl"
+          className="cursor-pointer not-selected text-3xl"
         >
           <LogoutIcon fontSize="inherit" />
         </button>
