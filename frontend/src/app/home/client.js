@@ -16,6 +16,7 @@ import { Button } from "@mui/material";
 import BeenhereOutlinedIcon from '@mui/icons-material/BeenhereOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import TaskList from "./components/taskList";
+import { set } from "date-fns";
 
 export default function HomeClient() {
 
@@ -23,9 +24,9 @@ export default function HomeClient() {
     const { isLoading, setLoading, taskList, setTaskList } = useHome();
 
     const fetchTasks = async () => {
+        setLoading(true);
         await api.get(apiRoutes.getTasks)
             .then(response => {
-                setLoading(true);
                 setTaskList(response.data.tasks);
                 calculateProgress();
                 setLoading(false);
@@ -46,9 +47,25 @@ export default function HomeClient() {
     }
 
     const markAllCompleted = async () => {
+        setLoading(true);
+        await api.put(apiRoutes.completeAllTasks)
+            .then(response => {
+                fetchTasks();
+            })
+            .catch(error => {
+                console.error("Error marking all tasks as completed:", error);
+            });
     }
 
     const deleteCompleted = async () => {
+        setLoading(true);
+        await api.delete(apiRoutes.deleteCompletedTasks)
+            .then(response => {
+                fetchTasks();
+            })
+            .catch(error => {
+                console.error("Error deleting completed tasks:", error);
+            });
     }
 
     useEffect(() => {
@@ -78,6 +95,7 @@ export default function HomeClient() {
                                                 backgroundColor: "transparent",
                                                 color: "var(--complete-all)",
                                             }}
+                                            onClick={markAllCompleted}
                                         >
                                             <div className="flex flex-row w-full items-center justify-center space-x-2">
                                                 <BeenhereOutlinedIcon />
@@ -93,6 +111,7 @@ export default function HomeClient() {
                                                 backgroundColor: "transparent",
                                                 color: "var(--delete-all)",
                                             }}
+                                            onClick={deleteCompleted}
                                         >
                                             <div className="flex flex-row w-full items-center justify-center space-x-2">
                                                 <DeleteForeverOutlinedIcon />
