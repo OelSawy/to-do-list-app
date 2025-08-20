@@ -7,13 +7,13 @@
   --text-not-selected: #353535;
   --text-selected: #533db9;
   --confirm-form: #382b73;
+  --font-poppins: 'Poppins', sans-serif;
+  --landing-page-bg: #e7a87c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,7 +26,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins)
 }
 
 button.not-selected {
@@ -51,9 +51,4 @@ button.selected {
 
 .border-not-selected {
   border-color: var(--text-not-selected);
-}
-
-.confirm-form {
-  background-color: var(--confirm-form);
-  color: white;
 }
