@@ -8,7 +8,6 @@ class TaskCreate(BaseModel):
     dueDate: datetime
     status: bool = False
     label: Optional[str] = None
-    user: str
 
 class TaskCreateResponse(BaseModel):
     id: str
@@ -47,6 +46,7 @@ class TaskResponse(BaseModel):
     status: bool = False
     label: Optional[str] = None
     user: str
+    id: str
 
     class Config:
         from_attributes = True

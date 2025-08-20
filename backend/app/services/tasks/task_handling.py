@@ -114,7 +114,8 @@ def get_all_tasks(request: Request) -> TaskListResponse:
             dueDate=task.dueDate,
             status=task.status,
             label=task.label,
-            user=str(task.user.id)
+            user=str(task.user.id),
+            id=str(task.id)
         ))
 
     return TaskListResponse(tasks=task_responses)
@@ -143,7 +144,8 @@ def get_task(task_id: str, request: Request) -> TaskResponse:
         dueDate=task.dueDate,
         status=task.status,
         label=task.label,
-        user=str(task.user.id)
+        user=str(task.user.id),
+        id=str(task.id)
     )
 
 def toggle_task_status(task_id: str, request: Request) -> TaskResponse:
@@ -173,7 +175,8 @@ def toggle_task_status(task_id: str, request: Request) -> TaskResponse:
         dueDate=task.dueDate,
         status=task.status,
         label=task.label,
-        user=str(task.user.id)
+        user=str(task.user.id),
+        id=str(task.id)
     )
 
 def delete_task(task_id: str, request: Request) -> None:
