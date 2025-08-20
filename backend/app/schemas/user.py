@@ -22,6 +22,7 @@ class UserLogin(BaseModel):
 class UserLoginResponse(BaseModel):
     id: str
     firstName: str
+    lastName: str
     email: EmailStr
     token: str
     
