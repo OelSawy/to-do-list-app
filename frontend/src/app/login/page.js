@@ -18,6 +18,7 @@ import NextLink from "next/link";
 import api from "../utils/api";
 import { useRouter } from "next/navigation";
 import apiRoutes from "../utils/apiRoutes";
+import { useSidebar } from "../context/SideBarContext";
 
 const LogInSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email address").required("Email is required."),
@@ -40,6 +41,7 @@ async function login(values) {
 export default function Login() {
 
     const router = useRouter();
+    const { setName } = useSidebar();
 
     return (
         <>
@@ -57,8 +59,9 @@ export default function Login() {
                         validationSchema={LogInSchema}
                         onSubmit={async (values, { setSubmitting }) => {
                             try {
-                                await login(values);
-                                router.push("/");
+                                const res = await login(values);
+                                setName(res.data.firstName + " " + res.data.lastName);
+                                router.push("/home");
                             } catch (err) {
                                 console.error(err);
                             }
