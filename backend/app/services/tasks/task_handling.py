@@ -199,3 +199,42 @@ def delete_task(task_id: str, request: Request) -> None:
 
     user.update(pull__tasks=task)
     task.delete()
+
+def complete_all_tasks(request: Request) -> None:
+    token = request.cookies.get("token")
+    if not token:
+        raise ValueError("Authentication token is missing.")
+    if not is_token_valid(token):
+        raise ValueError("Invalid authentication token.")
+
+    payload = jwt.decode(token, jwt_secret, algorithms=[jwt_algorithm])
+    user_id = payload.get("id")
+
+    user = User.objects(id=user_id).first()
+    if not user:
+        raise ValueError("User not found.")
+
+    tasks = user.tasks
+    for task in tasks:
+        task.status = True
+        task.save()
+
+def delete_completed_tasks(request: Request) -> None:
+    token = request.cookies.get("token")
+    if not token:
+        raise ValueError("Authentication token is missing.")
+    if not is_token_valid(token):
+        raise ValueError("Invalid authentication token.")
+
+    payload = jwt.decode(token, jwt_secret, algorithms=[jwt_algorithm])
+    user_id = payload.get("id")
+
+    user = User.objects(id=user_id).first()
+    if not user:
+        raise ValueError("User not found.")
+
+    tasks = user.tasks
+    for task in tasks:
+        if task.status:
+            user.update(pull__tasks=task)
+            task.delete()
