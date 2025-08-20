@@ -11,7 +11,7 @@ def create(request: Request, task_data: TaskCreate):
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.post("/{task_id}/edit", response_model=TaskEditResponse)
+@router.post("/edit/{task_id}", response_model=TaskEditResponse)
 def edit(request: Request, task_id: str, task_data: TaskEdit):
     try:
         return edit_task(task_id, task_data, request)
@@ -32,7 +32,7 @@ def get(request: Request, task_id: str):
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.post("/{task_id}/toggle", response_model=TaskResponse)
+@router.post("/toggle/{task_id}", response_model=TaskResponse)
 def toggle(request: Request, task_id: str):
     try:
         return toggle_task_status(task_id, request)
