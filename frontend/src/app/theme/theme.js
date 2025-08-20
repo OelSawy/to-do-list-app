@@ -13,17 +13,17 @@ const theme = createTheme({
           fontFamily: "'Poppins', sans-serif",
           backgroundColor: "var(--confirm-form)",
         },
-      },
+      }
     },
     MuiTextField: {
       defaultProps: {
-        variant: "standard"
+        variant: "standard",
       },
       styleOverrides: {
         root: {
-            height: "56px",
-        }
-      }
+          height: "56px",
+        },
+      },
     },
     MuiInput: {
       styleOverrides: {
@@ -33,13 +33,13 @@ const theme = createTheme({
         },
         underline: {
           "&:before": {
-            borderBottom: "1px solid var(--text-not-selected)", // default underline color
+            borderBottom: "1px solid var(--text-not-selected)",
           },
           "&:hover:not(.Mui-disabled):before": {
-            borderBottom: "1px solid var(--text-selected)", // hover underline color
+            borderBottom: "1px solid var(--text-selected)",
           },
           "&:after": {
-            borderBottom: "1px solid var(--confirm-form)", // focused underline color
+            borderBottom: "1px solid var(--confirm-form)",
           },
         },
       },

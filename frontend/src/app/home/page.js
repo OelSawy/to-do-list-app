@@ -1,12 +1,10 @@
-"use client";
+import HomeClient from "./client";
 
-import * as React from "react";
+export const metadata = {
+  title: "TickIt | Home",
+  description: "Welcome to the homepage",
+};
 
-export default function Home() {
-
-    return (
-        <>
-            <marquee>Home</marquee>
-        </>
-    );
+export default function HomePage() {
+  return <HomeClient />;
 }

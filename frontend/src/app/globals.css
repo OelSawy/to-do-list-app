@@ -9,6 +9,11 @@
   --confirm-form: #382b73;
   --font-poppins: 'Poppins', sans-serif;
   --landing-page-bg: #e7a87c;
+  --progress-bg: #e2e0ed;
+  --progress-bar-bg: #cac1f6;
+  --progress-bar: #513ea7;
+  --complete-all: #533db9;
+  --delete-all: #a12724;
 }
 
 @theme inline {
